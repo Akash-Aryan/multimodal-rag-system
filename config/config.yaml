@@ -1,0 +1,53 @@
+# Multimodal RAG System Configuration
+
+# Data directories
+data_dir: "./data"
+raw_data_dir: "./data/raw"
+processed_data_dir: "./data/processed"
+
+# Vector store configuration
+vector_store:
+  provider: "faiss"  # Options: faiss, chroma, pinecone
+  dimension: 384
+  index_type: "IndexFlatIP"
+  persist_directory: "./data/embeddings"
+
+# LLM configuration
+llm:
+  provider: "ollama"  # Options: ollama, huggingface
+  model_name: "llama2"
+  model_path: null
+  api_key: null
+  temperature: 0.7
+  max_tokens: 1024
+
+# Embedding models configuration
+embedding:
+  text_model: "sentence-transformers/all-MiniLM-L6-v2"
+  image_model: "clip-ViT-B-32"
+  batch_size: 32
+
+# Document processing configuration
+document_processing:
+  chunk_size: 1000
+  chunk_overlap: 200
+  supported_formats:
+    - "pdf"
+    - "docx"
+    - "txt"
+    - "md"
+    - "jpg"
+    - "png"
+    - "jpeg"
+    - "wav"
+    - "mp3"
+
+# Retrieval settings
+top_k: 5
+similarity_threshold: 0.7
+
+# Audio processing
+whisper_model: "base"  # Options: tiny, base, small, medium, large
+
+# Image processing
+ocr_enabled: true
