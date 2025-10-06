@@ -1,0 +1,36 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: multimodal-rag
+  annotations:
+    run.googleapis.com/ingress: all
+    run.googleapis.com/execution-environment: gen2
+spec:
+  template:
+    metadata:
+      annotations:
+        run.googleapis.com/memory: "8Gi"
+        run.googleapis.com/cpu: "4"
+        run.googleapis.com/timeout: "3600"
+        run.googleapis.com/max-scale: "10"
+        run.googleapis.com/min-scale: "0"
+    spec:
+      containerConcurrency: 1
+      containers:
+      - image: gcr.io/PROJECT_ID/multimodal-rag:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: PYTHONPATH
+          value: "/app"
+        - name: LOG_LEVEL
+          value: "INFO"
+        - name: OLLAMA_BASE_URL
+          value: "http://ollama-service:11434"
+        resources:
+          limits:
+            cpu: "4"
+            memory: "8Gi"
+          requests:
+            cpu: "2" 
+            memory: "4Gi"
