@@ -1,16 +1,5 @@
 # Deployment Guide for Multimodal RAG System
 
-## Why Vercel Won't Work
-
-❌ **Vercel is not suitable for this project because:**
-- 50MB deployment size limit (this project needs >2GB for ML models)
-- 60-second function timeout (processing takes minutes)
-- No persistent storage for embeddings
-- Cannot install system dependencies (Tesseract, Ollama)
-- Serverless functions can't handle heavy ML workloads
-
-## Recommended Deployment Options
-
 ### 🚀 Option 1: Railway (Easiest)
 
 **Pros:** Simple deployment, good for prototypes, persistent storage
